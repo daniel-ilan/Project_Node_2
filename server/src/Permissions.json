@@ -1,0 +1,13 @@
+[
+  {
+    "id": "60dad3d867be34a548beed5b",
+    "permissions": [
+      "View Subscriptions",
+      "Create Subscriptions",
+      "Delete Subscriptions",
+      "View Movies",
+      "Create Movies",
+      "Delete Movies"
+    ]
+  }
+]

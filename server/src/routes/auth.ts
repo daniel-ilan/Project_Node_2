@@ -3,7 +3,7 @@ import { registerNewUser, login } from '../controllers/login'
 
 const router: Router = Router()
 
-router.get("/login", login)
+router.post("/login", login)
 
 router.post("/signup", registerNewUser)
 

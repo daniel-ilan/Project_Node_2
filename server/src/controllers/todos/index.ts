@@ -2,7 +2,7 @@ import { Response, Request } from "express"
 import { ITodo } from "../../types"
 import Todo from "../../models/todo"
 
-const getTodos = async (req: Request, res: Response): Promise<void> => {
+const getTodos = async (res: Response): Promise<void> => {
 
     try {
         const todos: ITodo[] = await Todo.find()

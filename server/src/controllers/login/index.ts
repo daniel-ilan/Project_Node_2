@@ -22,7 +22,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         const userExists: Boolean = await User.exists({ username: username })
         if (userExists) {
             const user = <IUser>await User.findOne({ username: username }, { password: password })
-            res.status(201).json({ user: { ...user } })
+            res.status(201).json({ user: { ...user }, message: 'Found one :)' })
         }
         res.status(201).json({ user: null })
     } catch (error) {
