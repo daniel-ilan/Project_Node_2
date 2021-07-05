@@ -14,6 +14,6 @@ export interface IMember extends Document {
 
 export interface IUser extends Document {
     _id?: ObjectId
-    userName: string
+    username: string
     password: string
 }

@@ -1,6 +1,6 @@
-import React, { useState, useReducer } from 'react';
-import axios from 'axios';
-import API from '../api';
+import React, { useReducer } from 'react';
+import { useAuth } from '../context/UserContext';
+import { Link, useHistory } from 'react-router-dom';
 
 const formReducer = (state, event) => {
   if (event.reset) {
@@ -17,11 +17,19 @@ const formReducer = (state, event) => {
 
 const Login = () => {
   const [formData, setFormData] = useReducer(formReducer, {});
+  const { login } = useAuth();
+  let history = useHistory();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e);
-    API.post('/login', formData);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { username, password } = formData;
+    const userData = await login(username, password);
+    if (userData) {
+      window.localStorage.setItem('token', userData.token);
+      window.localStorage.setItem('id', userData.id);
+      window.localStorage.setItem('username', userData.username);
+      history.push('/main');
+    }
   };
 
   const handleChange = (event) => {
@@ -50,6 +58,9 @@ const Login = () => {
         </div>
         <button type='submit'>Login</button>
       </form>
+      <div>
+        <h4>Need to sign up first?</h4> <Link to='signup'>Signup</Link>
+      </div>
     </div>
   );
 };
